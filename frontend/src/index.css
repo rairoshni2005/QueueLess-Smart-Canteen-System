@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: #f97316;
+    --brand-dark: #ea580c;
+    --transition: 0.25s ease;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans antialiased transition-colors duration-300;
+    @apply bg-gray-50 text-gray-900;
+  }
+
+  .dark body {
+    @apply bg-dark-bg text-dark-text;
+  }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+/* ==================== SKELETON LOADER ==================== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #1e293b 25%,
+    #263146 50%,
+    #1e293b 75%
+  );
+  background-size: 1000px 100%;
+}
+
+/* ==================== GLASSMORPHISM ==================== */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.glass-dark {
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ==================== CARD STYLES ==================== */
+.card {
+  @apply rounded-3xl bg-white border border-gray-100 shadow-card transition-all duration-300;
+}
+.dark .card {
+  @apply bg-dark-card border-dark-border shadow-dark-card;
+}
+.card-hover {
+  @apply hover:shadow-card-hover hover:-translate-y-0.5;
+}
+
+/* ==================== BRAND GRADIENT ==================== */
+.gradient-brand {
+  background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.btn-primary {
+  @apply flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold text-white shadow-brand transition-all duration-200;
+  background: linear-gradient(135deg, #f97316, #f59e0b);
+}
+.btn-primary:hover {
+  @apply scale-[1.02] shadow-brand-lg;
+  filter: brightness(1.05);
+}
+.btn-primary:active { @apply scale-[0.98]; }
+
+.btn-secondary {
+  @apply flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-bold text-gray-700 transition-all duration-200;
+}
+.btn-secondary:hover { @apply bg-gray-50 border-gray-300 scale-[1.01]; }
+.dark .btn-secondary { @apply bg-dark-elevated border-dark-border text-dark-text; }
+
+/* ==================== INPUT FIELD ==================== */
+.input-field {
+  @apply w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all duration-200 outline-none;
+  @apply focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10;
+  @apply bg-white text-gray-800 placeholder-gray-400;
+}
+.dark .input-field {
+  @apply bg-dark-elevated border-dark-border text-dark-text placeholder-dark-muted;
+  @apply focus:border-brand-500;
+}
+
+/* ==================== BADGE ==================== */
+.badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+}
+
+/* ==================== PAGE TRANSITION ==================== */
+.page-enter {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==================== STAR RATING ==================== */
+.star-filled { @apply text-amber-400; }
+.star-empty { @apply text-gray-200; }
+
+/* ==================== ACTIVE NAV PILL ==================== */
+.nav-pill-active {
+  @apply bg-gradient-to-tr from-brand-500 to-amber-500 text-white shadow-brand;
+}
+
+/* ==================== CROWD INDICATOR ==================== */
+.crowd-dot-low { @apply bg-emerald-500; animation: pulse 2.5s ease-in-out infinite; }
+.crowd-dot-medium { @apply bg-amber-500; animation: pulse 2s ease-in-out infinite; }
+.crowd-dot-high { @apply bg-red-500; animation: ping 1s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* ==================== PROGRESS BAR ==================== */
+.progress-bar {
+  @apply h-2 rounded-full bg-gray-100 overflow-hidden;
+}
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-700 ease-out;
+  background: linear-gradient(90deg, #f97316, #f59e0b);
+}
+
+/* ==================== TIMER ==================== */
+.timer-urgent { @apply text-red-500 animate-pulse; }
+.timer-normal { @apply text-brand-600; }
+
+/* ==================== MOBILE BOTTOM NAV ==================== */
+.bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 z-50 border-t border-gray-100 bg-white/95 backdrop-blur-xl;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.dark .bottom-nav { @apply bg-dark-surface/95 border-dark-border; }
+
+/* ==================== REWARD CARD ==================== */
+.reward-badge {
+  @apply flex h-10 w-10 items-center justify-center rounded-xl text-lg;
+  background: linear-gradient(135deg, #f97316, #f59e0b);
+}
